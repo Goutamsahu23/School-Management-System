@@ -20,9 +20,9 @@ const Form = ({ formType, onSave, initialData }) => {
     const fetchData = async () => {
       try {
         const [studentsResponse, teachersResponse, classesResponse] = await Promise.all([
-          axios.get('http://localhost:5000/api/students'),
-          axios.get('http://localhost:5000/api/teachers'),
-          axios.get('http://localhost:5000/api/classes'),
+          axios.get('https://school-management-system-b-api.onrender.com/api/students'),
+          axios.get('https://school-management-system-b-api.onrender.com/api/teachers'),
+          axios.get('https://school-management-system-b-api.onrender.com/api/classes'),
         ]);
         setStudents(studentsResponse.data);
         setTeachers(teachersResponse.data);

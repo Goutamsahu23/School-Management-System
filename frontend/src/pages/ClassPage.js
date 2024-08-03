@@ -35,7 +35,7 @@ const ClassPage = () => {
   }, [classes]);
 
   const fetchClasses = () => {
-    axios.get('http://localhost:5000/api/classes')
+    axios.get('https://school-management-system-b-api.onrender.com/api/classes')
       .then(response => setClasses(response.data))
       .catch(error => console.error('Error fetching classes:', error));
   };
@@ -57,14 +57,14 @@ const ClassPage = () => {
 
   const handleSave = (data) => {
     if (currentClass) {
-      axios.put(`http://localhost:5000/api/classes/${currentClass._id}`, data)
+      axios.put(`https://school-management-system-b-api.onrender.com/api/classes/${currentClass._id}`, data)
         .then(response => {
           setClasses(classes.map(classItem => classItem._id === response.data._id ? response.data : classItem));
           closeModal();
         })
         .catch(error => console.error('Error updating class:', error));
     } else {
-      axios.post('http://localhost:5000/api/classes', data)
+      axios.post('https://school-management-system-b-api.onrender.com/api/classes', data)
         .then(response => {
           setClasses([...classes, response.data]);
           closeModal();
@@ -76,7 +76,7 @@ const ClassPage = () => {
   const handleEdit = (data, rowIndex) => {
     if (classes[rowIndex]) {
       const updatedClass = { ...data };
-      axios.put(`http://localhost:5000/api/classes/${classes[rowIndex]._id}`, updatedClass)
+      axios.put(`https://school-management-system-b-api.onrender.com/api/classes/${classes[rowIndex]._id}`, updatedClass)
         .then(response => {
           setClasses(classes.map(classItem => classItem._id === response.data._id ? response.data : classItem));
         })
@@ -86,7 +86,7 @@ const ClassPage = () => {
 
   const handleDelete = (data, index) => {
     if (window.confirm('Are you sure you want to delete this class?')) {
-      axios.delete(`http://localhost:5000/api/classes/${data._id}`)
+      axios.delete(`https://school-management-system-b-api.onrender.com/api/classes/${data._id}`)
         .then(() => {
           setClasses(classes.filter(classItem => classItem._id !== data._id));
         })

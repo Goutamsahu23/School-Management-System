@@ -16,7 +16,7 @@ const AnalyticsPage = () => {
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/classes');
+        const response = await axios.get('https://school-management-system-b-api.onrender.com/api/classes');
         setClasses(response.data);
       } catch (error) {
         console.error('Error fetching classes:', error);
@@ -30,7 +30,7 @@ const AnalyticsPage = () => {
     if (view === 'class' && currentClassId) {
       const fetchClassData = async () => {
         try {
-          const response = await axios.get(`http://localhost:5000/api/classes/${currentClassId}`);
+          const response = await axios.get(`https://school-management-system-b-api.onrender.com/api/classes/${currentClassId}`);
           setClassData(response.data);
           calculateGenderStats(response.data.students);
         } catch (error) {
@@ -57,7 +57,7 @@ const AnalyticsPage = () => {
     if (view === 'financial') {
       const fetchFinancialData = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/financials', {
+          const response = await axios.get('https://school-management-system-b-api.onrender.com/api/financials', {
             params: { month: selectedMonth, year: selectedYear }
           });
           setFinancialData(response.data);

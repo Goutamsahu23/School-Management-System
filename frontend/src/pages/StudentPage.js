@@ -30,7 +30,7 @@ const StudentPage = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/students');
+      const response = await axios.get('https://school-management-system-b-api.onrender.com/api/students');
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
@@ -51,10 +51,10 @@ const StudentPage = () => {
   const handleSave = async (data) => {
     try {
       if (currentStudent) {
-        const response = await axios.put(`http://localhost:5000/api/students/${currentStudent._id}`, data);
+        const response = await axios.put(`https://school-management-system-b-api.onrender.com/api/students/${currentStudent._id}`, data);
         setStudents(students.map(student => student._id === response.data._id ? response.data : student));
       } else {
-        const response = await axios.post('http://localhost:5000/api/students', data);
+        const response = await axios.post('https://school-management-system-b-api.onrender.com/api/students', data);
         setStudents([...students, response.data]);
       }
       closeModal();
@@ -66,7 +66,7 @@ const StudentPage = () => {
   const handleEdit = async (data, rowIndex) => {
     try {
       const updatedStudent = { ...data };
-      const response = await axios.put(`http://localhost:5000/api/students/${students[rowIndex]._id}`, updatedStudent);
+      const response = await axios.put(`https://school-management-system-b-api.onrender.com/api/students/${students[rowIndex]._id}`, updatedStudent);
       setStudents(students.map(student => student._id === response.data._id ? response.data : student));
     } catch (error) {
       console.error('Error updating student:', error);
@@ -76,7 +76,7 @@ const StudentPage = () => {
   const handleDelete = async (data) => {
     if (window.confirm('Are you sure you want to delete this student?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/students/${data._id}`);
+        await axios.delete(`https://school-management-system-b-api.onrender.com/api/students/${data._id}`);
         setStudents(students.filter(student => student._id !== data._id));
       } catch (error) {
         console.error('Error deleting student:', error);

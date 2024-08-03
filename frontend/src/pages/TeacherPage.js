@@ -30,7 +30,7 @@ const TeacherPage = () => {
   }, [teachers]);
 
   const fetchTeachers = () => {
-    axios.get('http://localhost:5000/api/teachers')
+    axios.get('https://school-management-system-b-api.onrender.com/api/teachers')
       .then(response => setTeachers(response.data))
       .catch(error => console.error('Error fetching teachers:', error));
   };
@@ -48,14 +48,14 @@ const TeacherPage = () => {
 
   const handleSave = (data) => {
     if (isEditing && currentTeacher) {
-      axios.put(`http://localhost:5000/api/teachers/${currentTeacher._id}`, data)
+      axios.put(`https://school-management-system-b-api.onrender.com/api/teachers/${currentTeacher._id}`, data)
         .then(response => {
           setTeachers(teachers.map(teacher => teacher._id === response.data._id ? response.data : teacher));
           closeModal();
         })
         .catch(error => console.error('Error updating teacher:', error));
     } else {
-      axios.post('http://localhost:5000/api/teachers', data)
+      axios.post('https://school-management-system-b-api.onrender.com/api/teachers', data)
         .then(response => {
           setTeachers([...teachers, response.data]);
           closeModal();
@@ -72,7 +72,7 @@ const TeacherPage = () => {
 
   const handleDelete = (data) => {
     if (window.confirm('Are you sure you want to delete this teacher?')) {
-      axios.delete(`http://localhost:5000/api/teachers/${data._id}`)
+      axios.delete(`https://school-management-system-b-api.onrender.com/api/teachers/${data._id}`)
         .then(() => {
           setTeachers(teachers.filter(teacher => teacher._id !== data._id));
         })
